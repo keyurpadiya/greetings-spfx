@@ -35,6 +35,18 @@ export default class Greetings extends React.Component<IGreetingsProps, IGreetin
     return userDisplayName;
   }
 
+  private getTimeBasedGreeting(): string {
+    const hour = new Date().getHours();
+
+    if (hour < 12) {
+      return "Good Morning";
+    } else if (hour < 17) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
+    }
+  }
+
   private calculateFontSizeDetails(fontSize: string): {
     value: number;
     unit: string;
@@ -263,15 +275,15 @@ export default class Greetings extends React.Component<IGreetingsProps, IGreetin
       backgroundPosition: 'center center', // ✅ SPECIFIC center positioning
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'local', // ✅ Added for better image display
-       flexShrink: 0
+      flexShrink: 0
 
     };
 
     let urlString = '';
 
-if (!urlString) {
-  styleObj.backgroundColor = 'transparent';
-}
+    if (!urlString) {
+      styleObj.backgroundColor = 'transparent';
+    }
 
     if (backgroundImageUrl) {
       if (typeof backgroundImageUrl === 'string') {
@@ -430,19 +442,19 @@ if (!urlString) {
       }`;
 
     return (
-       <section 
-      className={`${styles.greetings} ${hasTeamsContext ? styles.teams : ''}`}
-    >
+      <section
+        className={`${styles.greetings} ${hasTeamsContext ? styles.teams : ''}`}
+      >
         <div className={styles.contentContainer}>
           <div
             className={welcomeBoxClass}
             style={welcomeBoxStyle}
           >
-         
+
 
             <div className={styles.welcomeContent} style={welcomeContentStyle}>
               <h2 style={combinedFontStyle}>
-                {escape(greetingText || 'Welcome')}, {escape(userName)}!
+                {escape(greetingText || this.getTimeBasedGreeting())}, {escape(userName)}!
               </h2>
             </div>
           </div>
