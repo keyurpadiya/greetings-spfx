@@ -1,0 +1,18 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.17.1",
+    "sdksVersions": {},
+    "version": "1.21.1",
+    "libraryName": "greetings",
+    "libraryId": "8244f1a6-67ef-4af9-b6ff-297f3eb33d4f",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "greetings",
+    "solutionShortDescription": "greetings description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

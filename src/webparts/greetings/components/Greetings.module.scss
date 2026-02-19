@@ -1,0 +1,262 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.greetings {
+  overflow: hidden; // Keep this
+  padding: 0px; // ✅ FURTHER REDUCED from 0.5em to 0.25em (~4px)
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // ✅ REMOVED min-height: 220px
+  height: auto; // ✅ ADDED - Auto height based on content
+  min-height: auto; // ✅ ADDED
+
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+
+  .contentContainer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // ✅ ADDED - Allow container to shrink to content size
+    flex-shrink: 0;
+       margin: 0;
+    padding: 0;
+  }
+
+  
+  .welcome {
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    // ✅ Dynamic sizing - Remove fixed width/height
+    min-width: 180px; // Minimum like quick links
+    max-width: 400px; // Increased max width for larger text
+    padding: 20px 28px; // ✅ INCREASED padding to match client webpart
+    margin: 0 auto;
+
+    // Auto height based on content
+    height: auto;
+    min-height: 100px; // ✅ INCREASED from 60px to 100px
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // ✅ DEEPER shadow like client
+
+    // ✅ Dynamic font size responsive classes
+      &.smallFont {
+      padding: 16px 20px; // ✅ INCREASED
+      min-width: 160px;
+      min-height: 80px; // ✅ INCREASED
+    }
+    
+    &.mediumFont {
+      padding: 20px 28px; // ✅ INCREASED
+      min-width: 180px;
+      min-height: 100px; // ✅ INCREASED
+    }
+    
+    &.largeFont {
+      padding: 24px 32px; // ✅ INCREASED
+      min-width: 200px;
+      min-height: 120px; // ✅ INCREASED
+    }
+    
+    &.extraLargeFont {
+      padding: 28px 36px; // ✅ INCREASED
+      min-width: 220px;
+      min-height: 140px; // ✅ INCREASED
+    }
+
+     &.noBackgroundImage {
+      background-color: rgba(255, 255, 255, 0.9); // ✅ INCREASED opacity
+      border: 1px solid rgba(0, 0, 0, 0.15); // ✅ DARKER border
+      
+      :global(.theme-dark) & {
+        background-color: rgba(32, 31, 30, 0.9); // ✅ INCREASED opacity
+        border: 1px solid rgba(255, 255, 255, 0.15); // ✅ DARKER border
+      }
+    }
+
+   .imageOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* ✅ EDGE VIGNETTE — CENTER IMAGE PURE RAHEGI */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 60%,   // 🔥 NO EFFECT ON IMAGE
+    rgba(0, 0, 0, 0.08) 100%
+  );
+
+  :global(.theme-dark) & {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 55%, // 🔥 STILL PURE
+      rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+}
+
+
+
+    .welcomeContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  // justify-content will be set dynamically via inline style
+  align-items: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  
+  h2 {
+    margin: 0;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    // text-align will be set dynamically via inline style
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
+    
+    // ✅ Better default text shadow that works with auto-detection
+    text-shadow:
+      1px 1px 4px rgba(0, 0, 0, 0.6),
+      0 0 10px rgba(0, 0, 0, 0.4);
+    
+    // For very light text on dark background
+    &.lightText {
+      text-shadow:
+        1px 1px 4px rgba(0, 0, 0, 0.8),
+        0 0 12px rgba(0, 0, 0, 0.6);
+    }
+    
+    // For dark text on light background
+    &.darkText {
+      text-shadow:
+        1px 1px 3px rgba(255, 255, 255, 0.9),
+        0 0 8px rgba(255, 255, 255, 0.6);
+    }
+    
+    :global(.theme-dark) & {
+      // Adjust for dark theme
+      &.lightText {
+        text-shadow:
+          1px 1px 4px rgba(255, 255, 255, 0.4),
+          0 0 10px rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .welcomeContent {
+    h2 {
+      text-align: inherit !important; // ✅ ALLOW user's alignment choice on mobile
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .greetings {
+    min-height: auto !important; // ✅ ADDED - Mobile pe bhi auto height
+    padding: 0.5em !important; // ✅ FURTHER REDUCED for mobile
+    
+    .welcome {
+      min-width: 150px !important;
+      max-width: 300px !important;
+      padding: 16px 20px !important; // ✅ INCREASED for mobile
+      min-height: 80px !important; // ✅ INCREASED
+      
+      &.smallFont {
+        padding: 14px 18px !important; // ✅ INCREASED
+        min-width: 140px !important;
+        min-height: 70px !important; // ✅ INCREASED
+      }
+      
+      &.mediumFont {
+        padding: 16px 20px !important; // ✅ INCREASED
+        min-width: 150px !important;
+        min-height: 80px !important; // ✅ INCREASED
+      }
+      
+      &.largeFont {
+        padding: 18px 22px !important; // ✅ INCREASED
+        min-width: 160px !important;
+        min-height: 90px !important; // ✅ INCREASED
+      }
+      
+      &.extraLargeFont {
+        padding: 20px 24px !important; // ✅ INCREASED
+        min-width: 170px !important;
+        min-height: 100px !important; // ✅ INCREASED
+      }
+    }
+  }
+
+  .mobileFontSize {
+    font-size: 90% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .greetings {
+    padding: 0.8em !important; // ✅ REDUCED for tablet
+    
+    .welcome {
+      max-width: 350px !important;
+      min-height: 90px !important; // ✅ INCREASED for tablet
+      // Welcome box ki padding yahan define hogi, not 0.5em
+      padding: 16px 20px !important; // ✅ Tablet ke liye welcome box ki padding
+    }
+  }
+
+  .tabletFontSize {
+    font-size: 95% !important;
+  }
+}
+
+.welcome {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 🔥 Mobile first */
+@media (max-width: 768px) {
+  .welcome {
+    max-width: 100% !important;
+    padding: 16px 20px !important; // ✅ INCREASED
+  }
+
+  .welcomeContent h2 {
+    font-size: 1.1rem !important; // ✅ SLIGHTLY LARGER
+    text-align: center;
+  }
+}
+
+/* Large screens (one column) */
+@media (min-width: 1200px) {
+  .greetings {
+    .welcome {
+      padding: 24px 32px !important; // ✅ INCREASED
+      min-height: 110px !important; // ✅ INCREASED for large screens
+    }
+  }
+}
